@@ -1,1 +1,9 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+//@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.homeP{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('public/img/dcCom.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
