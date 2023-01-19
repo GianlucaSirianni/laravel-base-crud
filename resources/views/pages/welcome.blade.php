@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title-page', 'I migliori fumetti')
+@section('title-page', 'DC COMICS - HOME')
 
 @section('main-content')
     <h1>Home Page</h1>

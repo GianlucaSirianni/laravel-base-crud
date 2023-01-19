@@ -14,7 +14,13 @@ class ComicController extends Controller
      */
     public function index()
     {
-        //
+        $comics = Comic::orderBy('id', 'desc')->paginate(4);
+
+        $data = [
+            'comics' => $comics
+        ];
+
+        return view('pages.comic.index', $data);
     }
 
     /**
@@ -24,7 +30,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.comic.create');
     }
 
     /**
@@ -35,7 +41,21 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        {
+            $data = $request->all();
+            // dd($data);
+            $new_record = new Comic();
+            $new_record->fill($data);
+            // $new_record->title = $data['title'];
+            // $new_record->description = $data['description'];
+            // $new_record->type = $data['type'];
+            // $new_record->image = $data['image'];
+            // $new_record->cooking_time = $data['cooking_time'];
+            // $new_record->weight = $data['weight'];
+            $new_record->save();
+    
+            return redirect()->route('comics.index', ['comic' => $new_record->id]);
+        }
     }
 
     /**
@@ -44,11 +64,12 @@ class ComicController extends Controller
      * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function show(Comic $comic)
+    public function show($id)
     {
-        //
+        $elem = Comic::findOrFail($id);
+        // dd($elem);
+        return view('pages.comic.show', compact('elem'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
