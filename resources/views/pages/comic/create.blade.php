@@ -1,7 +1,7 @@
 @extends('layouts.app')
-{{-- @section('title-page', 'La miglior Pasta - show') --}}
+
 @section('title-page')
-La miglior Pasta - Create
+DC COMICS - Create
 @endsection
 
 @section('main-content')

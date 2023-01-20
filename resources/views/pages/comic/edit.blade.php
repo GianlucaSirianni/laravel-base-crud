@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-page')
-La miglior Pasta - Edit
+DC - COMICS - Edit
 @endsection
 
 @section('main-content')

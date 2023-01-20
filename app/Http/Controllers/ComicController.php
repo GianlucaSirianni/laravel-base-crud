@@ -41,21 +41,31 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        {
-            $data = $request->all();
-            // dd($data);
-            $new_record = new Comic();
-            $new_record->fill($data);
-            // $new_record->title = $data['title'];
-            // $new_record->description = $data['description'];
-            // $new_record->type = $data['type'];
-            // $new_record->image = $data['image'];
-            // $new_record->cooking_time = $data['cooking_time'];
-            // $new_record->weight = $data['weight'];
-            $new_record->save();
+        $data = $request->all();
 
-            return redirect()->route('comics.index', ['comic' => $new_record->id]);
-        }
+        $request->validate(
+            [
+                'title' => 'required|max:50'
+            ],
+            [
+                'title.required' => 'Attenzione il campo title è obbligatorio',
+                'title.max' => 'Attenzione il campo non deve superare i 50 caratteri'
+            ]
+    );
+
+
+        // dd($data);
+        $new_record = new Comic();
+        $new_record->fill($data);
+        // $new_record->title = $data['title'];
+        // $new_record->description = $data['description'];
+        // $new_record->type = $data['type'];
+        // $new_record->image = $data['image'];
+        // $new_record->cooking_time = $data['cooking_time'];
+        // $new_record->weight = $data['weight'];
+        $new_record->save();
+
+        return redirect()->route('comics.show', ['comic' => $new_record->id]);
     }
 
     /**
