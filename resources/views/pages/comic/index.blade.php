@@ -3,6 +3,12 @@
 @section('main-content')
 
     <h1>Trova il migliore per te</h1>
+
+    @if ( session('success') )
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     {{-- Tutti i record della tabella pasta --}}
     <div>
         <a href="{{ route('comics.create') }}">Crea dei fumetti</a>
@@ -29,7 +35,18 @@
                             <a href="{{ route('comics.show', $elem->id) }}" class="card-link">see info</a>
 
                         </div>
-
+                        <form action="{{route('comics.destroy', $elem->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-dark" type="submit">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </form>
+                        <div>
+                            <a href="{{route('comics.edit', $elem->id)}}">
+                                 <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
                     </div>
 
                 </div>

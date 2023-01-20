@@ -8,6 +8,16 @@ La miglior Pasta - Create
 
 <h1 class="text-center">Form per la Create</h1>
 
+@if ( $errors->any() )
+    <div class="alert alert-danger my-3">
+        <ul>
+            @foreach ($errors->all() as $error )
+               <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form method="POST" action="{{route('comics.store')}}">
 
     @csrf
@@ -15,6 +25,9 @@ La miglior Pasta - Create
     <div class="mb-3">
         <label class="form-label">Titolo</label>
         <input name="title" type="text" class="form-control" id="title">
+        @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="mb-3">

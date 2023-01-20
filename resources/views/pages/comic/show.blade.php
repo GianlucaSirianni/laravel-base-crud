@@ -6,6 +6,11 @@
 
 @section('main-content')
     <h1 class="text-center">{{ $elem->title }}</h1>
+    @if ( session('success') )
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div>
         <p>
             {{ $elem->description }}
